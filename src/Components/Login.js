@@ -1,11 +1,11 @@
 import React, {useState} from "react"
 import { useHistory } from "react-router-dom"
+import Register from "./Register"
 
-function Login() {
+function Login({isLoggedIn, setIsLoggedIn}) {
 
     const [username, setUserName] = useState([])
     const [errors, setErrors] = useState([])
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [loginOrRegister, setLoginOrRegister] = useState("login")
 
     let history = useHistory()
@@ -35,7 +35,6 @@ function Login() {
                     setErrors(data)
                 }
             })
-
     }
 
     function handleButton(e) {
@@ -48,9 +47,10 @@ function Login() {
     return(
 
         <div> 
-            {!isLoggedIn && 
+            {loginOrRegister === "login" && 
             <div className = "LoginFormContainer">
                 {errors.length > 0 && <p style ={{color: "red"}}> {errors[0]} </p>}
+                <h4> Please Login </h4>
                 <form onSubmit = {handleSubmit} >
                 <label> Username: </label> <br/>
                 <input type = "text" name = "username" value = {username} onChange={handleChange}/>
@@ -58,10 +58,10 @@ function Login() {
                 </form>
             </div>}
             {/* Renders if the user is logged in  */}
-            {isLoggedIn && <p> Thank you for logging in</p>}
+            {loginOrRegister === "register" &&  <Register />}
 
             <button onClick = {handleButton}> {loginOrRegister === "login" ? "click here to register" : "click here to login"}</button>
-
+           
         </div>
 
 
