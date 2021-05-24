@@ -1,11 +1,19 @@
 import React from "react"
+import Login from "./Login.js";
 
 function HomePage() {
 
     return(
         <div>
-            Test
+            <div>
+                Welcome to Hoose!!
+            </div>
+            <div>
+                <Login />
+            </div>
         </div>
+
+
 
     )
 
