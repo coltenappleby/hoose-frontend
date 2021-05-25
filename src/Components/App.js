@@ -4,6 +4,7 @@ import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import ZipCodeList from './ZipCodeList';
 import UserShow from './UserShow';
+import ZipCodeShow from './ZipCodeShow';
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
         <Route exact path="/users/:id">
           <UserShow />
         </Route>
+        <Route exact path="/zipcodes/:id">
+          <ZipCodeShow />
+        </Route>
+
 
 
       </Switch>

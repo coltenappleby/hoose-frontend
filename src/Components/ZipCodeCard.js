@@ -1,7 +1,7 @@
 import React from "react"
 
 
-function ZipCodeShow({zip, name, population, state, county}) {
+function ZipCodeCard({zip, name, population, state, county}) {
 
 
     return (
@@ -18,4 +18,4 @@ function ZipCodeShow({zip, name, population, state, county}) {
 }
 
 
-export default ZipCodeShow;
+export default ZipCodeCard;
