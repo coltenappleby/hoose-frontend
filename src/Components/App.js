@@ -28,7 +28,7 @@ function App() {
           <HomePage zipCodes ={zipCodes} setZipCodes = {setZipCodes} />
         </Route>
         <Route exact path="/zipcodes">
-          <ZipCodeList />
+          <ZipCodeList zipCodes = {zipCodes} setZipCodes = {setZipCodes} />
         </Route>
         <Route exact path="/users/:id">
           <UserShow allZipCodes= {zipCodes} />

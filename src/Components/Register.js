@@ -39,7 +39,7 @@ function Register() {
             <form onSubmit = {handleSubmit} >
                 <label> Username: </label> <br/>
                 <input type = "text" name = "username" value = {username} onChange={handleChange}/>
-            <input className="login" type="submit" />
+                <input className="login" type="submit" />
             </form>
         </div>
     )
