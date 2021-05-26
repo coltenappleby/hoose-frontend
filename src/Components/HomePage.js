@@ -1,7 +1,8 @@
 import React, { useState } from "react"
+import JobSearchForm from "./JobSearchForm.js";
 import Login from "./Login.js";
 
-function HomePage() {
+function HomePage({setZipCodes, zipCodes}) {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
@@ -15,6 +16,9 @@ function HomePage() {
             <div>
                 <Login isLoggedIn = {isLoggedIn} setIsLoggedIn = {setIsLoggedIn} />
             </div> }
+            <div id="job-search-form-container">
+               <JobSearchForm setZipCodes = {setZipCodes} zipCodes = {zipCodes} /> 
+            </div>
         </div>
 
 

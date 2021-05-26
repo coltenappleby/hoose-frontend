@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import { useHistory } from "react-router-dom"
+// import { useHistory } from "react-router-dom"
 import Register from "./Register"
 
 function Login({isLoggedIn, setIsLoggedIn}) {
@@ -8,7 +8,7 @@ function Login({isLoggedIn, setIsLoggedIn}) {
     const [errors, setErrors] = useState([])
     const [loginOrRegister, setLoginOrRegister] = useState("login")
 
-    let history = useHistory()
+    // let history = useHistory()
 
     function handleChange(e) {
         setUserName(e.target.value)
