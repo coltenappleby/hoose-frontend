@@ -20,7 +20,6 @@ function UserShow({allZipCodes}) {
             .then(data => {
                 setUserData(data)
                 setUsername(data.username)
-                console.log(data)
             })
     }, [])
 
@@ -49,15 +48,12 @@ function UserShow({allZipCodes}) {
 
     function removeFavZip(id){
         const filteredFavZips = userData.favorited_zips.filter((zip) => zip.id !== id)
-        console.log(filteredFavZips)
         setUserData({...userData, favorited_zips: filteredFavZips})
     }
     function addFavZip(favoriteZipObject){
-        const favZips = {...userData.favorited_zips, favoriteZipObject}
+        const favZips = [...userData.favorited_zips, favoriteZipObject]
         setUserData({...userData, favorited_zips: favZips})
-        console.log(userData)
     }
-    console.log(userData)
     const favoriteZipItems = userData.favorited_zips.map((zipData) => {
         return(
             <FavoriteZipItem 
