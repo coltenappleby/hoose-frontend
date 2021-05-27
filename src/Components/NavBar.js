@@ -13,25 +13,13 @@ function NavBar() {
       >
         Home
       </NavLink>
-      <NavLink
-        to={`/users/${window.sessionStorage.getItem("currentUserId")}`}
-        exact
-        activeStyle = {{
-          background: "rgb(186, 197, 206)"
-        }}
-      >
+      <NavLink to={`/users/${window.sessionStorage.getItem("currentUserId")}`} exact >
         User Page
       </NavLink>
-      <NavLink
-        to="/zipcodes"
-        exact
-      >
+      <NavLink to="/zipcodes" exact >
         Zip Codes Index
       </NavLink>
-      <NavLink
-        to="/job_searches"
-        exact
-      >
+      <NavLink to="/job_searches" exact >
         Job Search Index
       </NavLink>
     </div>

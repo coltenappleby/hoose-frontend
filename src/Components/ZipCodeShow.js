@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from 'react-router-dom'
 import HousingDataTable from "./HousingDataTable.js";
-import JobSearchItem from "./JobSearchItem.js";
+import JobSearchTableRow from "./JobSearchTableRow.js";
 
 
 
@@ -20,8 +20,12 @@ function ZipCodeShow() {
             })
     }, [])
 
-    const jobSearchItems = zipData.job_searches.map((oneSearch) => <JobSearchItem {...oneSearch} key={oneSearch.id}/> )
-
+    const jobSearchTableRows = zipData.job_searches.map((jobSearchInstance) => { 
+        return(
+            <JobSearchTableRow {...jobSearchInstance} key = {jobSearchInstance.id}/>
+        )
+    })
+    
     return(
         <div id='zip-code-show-container'>
             <h1> {zipData.zip}</h1>
@@ -38,11 +42,25 @@ function ZipCodeShow() {
                 <HousingDataTable housingData = {zipData.housing_data} />
             </div>
 
-            <div id='job-search-results-list'>
+            {/* <div id='job-search-results-list'>
                 <h3> Job Search Listings </h3>
                 {jobSearchItems}
-            </div>
-            
+            </div> */}
+            <table className="job-search-table">
+                <tr>
+                    <th>Zip Code</th>
+                    <th>search_date</th>
+                    <th>number_of_posts</th>
+                    <th>remote</th>
+                    <th>radius</th>
+                    <th>job_type</th>
+                    <th>date_posted</th>
+                </tr>
+                <tbody>
+                    {jobSearchTableRows}
+                </tbody>
+            </table>
+
 
         </div>
     )
