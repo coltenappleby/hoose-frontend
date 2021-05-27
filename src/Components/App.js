@@ -6,6 +6,7 @@ import ZipCodeList from './ZipCodeList';
 import UserShow from './UserShow';
 import ZipCodeShow from './ZipCodeShow';
 import JobSearchList from './JobSearchList';
+import NavBar from './NavBar';
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
   return (
     <>
     <Router>
+      <NavBar />
       <Switch>
         <Route exact path="/">
           <HomePage zipCodes ={zipCodes} setZipCodes = {setZipCodes} />
