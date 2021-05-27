@@ -1,47 +1,42 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
+import ZipCodeFilter from "./ZipCodeFilter";
+import { Link } from 'react-router-dom'
 
 
 
 function ZipCodeList({zipCodes, setZipCodes}) {
 
-    // const [zipCodes, setZipCodes] = useState([])
+    const [searchTerm, setSearchTerm] = useState('')
 
-    // useEffect(() => {
-    //     fetch('http://localhost:3000/zip_codes')
-    //         .then(res => res.json())
-    //         .then(zipData => setZipCodes(zipData))
-    // }, [] )
+    const filteredZipCodes = zipCodes.filter((zipcodeInstance) => zipcodeInstance.zip.toString().includes(searchTerm.toString()))
 
-    // const zipCodeCards = zipCodes.map((zip) => {
-    //     return(
-    //         <ZipCodeCard {...zip} key = {zip.id+zip.name} />
-    //     )
-    // })
-
-    const zipCodeCards = zipCodes.map((zipcodeInstance) => {
+    const zipCodeCards = filteredZipCodes.map((zipcodeInstance) => {
         return(
-            <div key = {zipcodeInstance.id}> 
-                Zip Code = {zipcodeInstance.zip}
-                Name = {zipcodeInstance.name}
-                Population = {zipcodeInstance.population}
-                {/* State = {state ? state : "not available"} */}
-                County = {zipcodeInstance.county ? zipcodeInstance.county : "not available"}
-            </div>
+                <li key = {zipcodeInstance.id}> 
+                    <Link to={`/zipcodes/${zipcodeInstance.id}`}> Zip Code = {zipcodeInstance.zip} </Link>
+                    -- Name = {zipcodeInstance.name}
+                    Population = {zipcodeInstance.population}
+                    {/* State = {state ? state : "not available"} */}
+                    County = {zipcodeInstance.county ? zipcodeInstance.county : "not available"}
+                </li>
         )
     })
-    
+
+    // "/zipcodes/:id"
 
     return (
-        <>
-        <h1>ZipCode List</h1>
-
-        <div>
-            {zipCodeCards}
+        <div id="zip-code-list-container">
+            <h1>ZipCode List</h1>
+            <div id="zip-code-filter-container">
+               <ZipCodeFilter searchTerm = {searchTerm} setSearchTerm = {setSearchTerm} />
+            </div>
+            <div id="zip-code-list">
+                <ul>
+                    {zipCodeCards}
+                </ul>
+            </div>
         </div>
-
-        </>
     )
-
 }
 
 export default ZipCodeList;

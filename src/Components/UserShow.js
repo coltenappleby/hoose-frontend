@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react"
-import { useParams } from 'react-router-dom'
-import FavoriteZipAdd from "./FavoriteZipAdd"
-import FavoriteZipItem from "./FavoriteZipItem"
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import FavoriteZipAdd from "./FavoriteZipAdd";
+import FavoriteZipItem from "./FavoriteZipItem";
+import JobSearchTableRow from "./JobSearchTableRow";
 
 
 
 function UserShow({allZipCodes}) {
 
     const [renderChangeUsername, setRenderChangeUsername] = useState(false) //what a horrible name! give me '?'
-    const [userData, setUserData] = useState({favorited_zips:[]})
+    const [userData, setUserData] = useState({favorited_zips:[], job_searches:[]})
     const [username, setUsername] = useState('')
     let { id } = useParams()
 
@@ -19,12 +20,12 @@ function UserShow({allZipCodes}) {
             .then(data => {
                 setUserData(data)
                 setUsername(data.username)
+                console.log(data)
             })
     }, [])
 
     function handleUsernameChange(e){
         setUsername(e.target.value)
-
     }
 
     function handleUsernameChangeSubmit(e){
@@ -48,16 +49,15 @@ function UserShow({allZipCodes}) {
 
     function removeFavZip(id){
         const filteredFavZips = userData.favorited_zips.filter((zip) => zip.id !== id)
-        setUserData({...userData, [userData.favorited_zips]: filteredFavZips})
-        console.log(userData)
-
+        console.log(filteredFavZips)
+        setUserData({...userData, favorited_zips: filteredFavZips})
     }
     function addFavZip(favoriteZipObject){
         const favZips = {...userData.favorited_zips, favoriteZipObject}
-        setUserData({...userData, [userData.favorited_zips]: favZips})
+        setUserData({...userData, favorited_zips: favZips})
         console.log(userData)
     }
-
+    console.log(userData)
     const favoriteZipItems = userData.favorited_zips.map((zipData) => {
         return(
             <FavoriteZipItem 
@@ -66,6 +66,12 @@ function UserShow({allZipCodes}) {
                 removeFavZip = {removeFavZip} 
                 key={zipData.id}
             />
+        )
+    })
+
+    const jobSearchTableRows = userData.job_searches.map((jobSearchInstance) => { 
+        return(
+            <JobSearchTableRow {...jobSearchInstance} key = {jobSearchInstance.id}/>
         )
     })
 
@@ -95,7 +101,23 @@ function UserShow({allZipCodes}) {
                 </div>
                 <div id="favorite-zip-container">
                     <FavoriteZipAdd allZipCodes= {allZipCodes} addFavZip = {addFavZip}/>
-                    {favoriteZipItems}
+                    <ul> {favoriteZipItems} </ul>
+                </div>
+                <div class="job-search-container">
+                    <table >
+                        <tr>
+                            <th>Zip Code</th>
+                            <th>search_date</th>
+                            <th>number_of_posts</th>
+                            <th>remote</th>
+                            <th>radius</th>
+                            <th>job_type</th>
+                            <th>date_posted</th>
+                        </tr>
+                        <tbody>
+                            {jobSearchTableRows}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         : <h1> Invalid address </h1>} </>
@@ -103,3 +125,4 @@ function UserShow({allZipCodes}) {
 }
 
 export default UserShow;
+

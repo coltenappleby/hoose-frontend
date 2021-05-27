@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import JobSearchItem from "./JobSearchItem"
+import JobSearchTableRow from "./JobSearchTableRow"
 
 
 function JobSearchList() {
@@ -13,10 +13,31 @@ function JobSearchList() {
                 setJobSearchData(data)})
     }, [])
 
-    const jobSearchItems = jobSearchData.map((oneSearch) => <JobSearchItem {...oneSearch} key={oneSearch.id}/> )
+
+    const jobSearchTableRows = jobSearchData.map((jobSearchInstance) => { 
+        return(
+            <JobSearchTableRow {...jobSearchInstance} key = {jobSearchInstance.id}/>
+        )
+    })
+
 
     return(
-        <div>{jobSearchItems}</div>
+        <div className="job-search-container">
+            <table >
+                <tr>
+                    <th>Zip Code</th>
+                    <th>search_date</th>
+                    <th>number_of_posts</th>
+                    <th>remote</th>
+                    <th>radius</th>
+                    <th>job_type</th>
+                    <th>date_posted</th>
+                </tr>
+                <tbody>
+                    {jobSearchTableRows}
+                </tbody>
+            </table>
+        </div>
     )
 }
 

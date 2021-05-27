@@ -13,10 +13,10 @@ function FavoriteZipAdd({allZipCodes, addFavZip}) {
     
     function handleSubmit(e){
         e.preventDefault()
-        console.log(allZipCodes)
-        console.log(zipcode)
+        // console.log(allZipCodes)
+        // console.log(zipcode)
         const zip_code_id =  allZipCodes.filter((zipcodeInstance) => zipcodeInstance.zip === zipcode)[0].id
-        console.log(zip_code_id)
+        // console.log(zip_code_id)
 
         fetch(`http://localhost:3000/favorited_zips`, {
             method: 'POST',

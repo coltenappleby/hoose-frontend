@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from 'react-router-dom'
+import HousingDataTable from "./HousingDataTable.js";
+import JobSearchItem from "./JobSearchItem.js";
 
 
 
 function ZipCodeShow() {
 
-    const [zipData, setZipData] = useState([])
+    const [zipData, setZipData] = useState({job_searches: [], housing_data: []})
 
     let {id} = useParams()
 
@@ -18,16 +20,29 @@ function ZipCodeShow() {
             })
     }, [])
 
+    const jobSearchItems = zipData.job_searches.map((oneSearch) => <JobSearchItem {...oneSearch} key={oneSearch.id}/> )
+
     return(
         <div id='zip-code-show-container'>
             <h1> {zipData.zip}</h1>
             <div id='zip-code-information'>
-                <p> City Name: {zipData.name} </p>
-                <p> Population (if available): {zipData.population ? zipData.population : "NA"} </p>
-                <p> County: {zipData.county} </p>
+                <ul>
+                    <li> City Name: {zipData.name} </li>
+                    <li> Population (if available): {zipData.population ? zipData.population : "NA"} </li>
+                    <li> County: {zipData.county} </li>
+                    <li> Number of Job Searches: {zipData.job_searches.length} searches </li>
+                </ul>
             </div>
-            <div id='job-search-results-list'></div>
-            <div id='home-value-results-list'></div>
+            <div id='housing-data-results-list'>
+                <h3> House Listings</h3>
+                <HousingDataTable housingData = {zipData.housing_data} />
+            </div>
+
+            <div id='job-search-results-list'>
+                <h3> Job Search Listings </h3>
+                {jobSearchItems}
+            </div>
+            
 
         </div>
     )

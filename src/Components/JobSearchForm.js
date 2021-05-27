@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
+
 
 function JobSearchForm({zipCodes, setZipCodes}) {
+    let history = useHistory()
     const [formData, setFormData] = useState({
         search_term: "",
         remote: false,
@@ -15,7 +18,6 @@ function JobSearchForm({zipCodes, setZipCodes}) {
 
     function handleChange(e){
         setFormData({...formData, [e.target.name]: e.target.value})
-        console.log(window.sessionStorage.getItem("currentUserId"))
     }
 
     function handleSubmit(e){
@@ -36,7 +38,11 @@ function JobSearchForm({zipCodes, setZipCodes}) {
             body: JSON.stringify({...formData, zip_code_id,})
         })
             .then(res => res.json())
-            .then(console.log)
+            .then((search) => {
+                if(search){
+                    history.push(`/zipcodes/${search.zip_code.id}`)
+                }
+            })
 
             //history thing to redirect
 

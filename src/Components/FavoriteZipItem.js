@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 function FavoriteZipItem({zipData, allZipCodes, removeFavZip}) {
 
@@ -23,7 +24,7 @@ function FavoriteZipItem({zipData, allZipCodes, removeFavZip}) {
 
     return(
         <div>
-            {willTheRealZipCodePleaseStandUp && <ul> {willTheRealZipCodePleaseStandUp.zip} <button onClick={handleDelete}>Delete</button> </ul>}
+            {willTheRealZipCodePleaseStandUp && <li> <Link to={`/zipcodes/${willTheRealZipCodePleaseStandUp.id}`}> {willTheRealZipCodePleaseStandUp.zip}</Link> <button onClick={handleDelete}>Delete</button> </li>}
         </div>
     )
 }
