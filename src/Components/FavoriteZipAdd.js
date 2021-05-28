@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function FavoriteZipAdd({allZipCodes, addFavZip}) {
+function FavoriteZipAdd({allZipCodes, usersFavZips, addFavZip}) {
 
     const [errors, setErrors] = useState('')
     const [zipcode, setZipcode] = useState('')
@@ -13,28 +13,34 @@ function FavoriteZipAdd({allZipCodes, addFavZip}) {
     
     function handleSubmit(e){
         e.preventDefault()
-        // console.log(allZipCodes)
-        // console.log(zipcode)
-        const zip_code_id =  allZipCodes.filter((zipcodeInstance) => zipcodeInstance.zip === zipcode)[0].id
-        // console.log(zip_code_id)
 
-        fetch(`http://localhost:3000/favorited_zips`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
-            },
-            body: JSON.stringify({user_id, zip_code_id})
-        })
-            .then(res => res.json())
-            .then((data) => {
-                console.log(data)
-                if (data.id){
-                    addFavZip(data)
-                } else {
-                    setErrors(data)
-                }
-            })
+        if(usersFavZips.map((zipInstance) => {return(zipInstance.zip)}).includes(zipcode)) {
+            setErrors(['Zip Code has already been favorited'])
+            
+        } else {
+            const zip_code_id =  allZipCodes.filter((zipcodeInstance) => zipcodeInstance.zip === zipcode)[0].id
+
+            fetch(`http://localhost:3000/favorited_zips`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                },
+                body: JSON.stringify({user_id, zip_code_id})
+                })
+                    .then(res => res.json())
+                    .then((data) => {
+                        console.log(data)
+                        if (data.id){
+                            addFavZip(data)
+                        } else {
+                            setErrors(data)
+                            console.log(errors)
+                        }
+                    })
+        }
+
+        
     }
 
     let displayErrors

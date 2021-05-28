@@ -20,6 +20,7 @@ function UserShow({allZipCodes}) {
             .then(data => {
                 setUserData(data)
                 setUsername(data.username)
+                console.log(data)
             })
     }, [])
 
@@ -58,7 +59,6 @@ function UserShow({allZipCodes}) {
         return(
             <FavoriteZipItem 
                 zipData = {zipData} 
-                allZipCodes = {allZipCodes} 
                 removeFavZip = {removeFavZip} 
                 key={zipData.id}
             />
@@ -96,10 +96,10 @@ function UserShow({allZipCodes}) {
                     {/* < JobSearchList /> */}
                 </div>
                 <div id="favorite-zip-container">
-                    <FavoriteZipAdd allZipCodes= {allZipCodes} addFavZip = {addFavZip}/>
+                    <FavoriteZipAdd allZipCodes= {allZipCodes} addFavZip = {addFavZip} usersFavZips = {userData.favorited_zips}/>
                     <ul> {favoriteZipItems} </ul>
                 </div>
-                <div class="job-search-container">
+                <div className="job-search-container">
                     <table >
                         <tr>
                             <th>Zip Code</th>
