@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-function FavoriteZipItem({zipData, removeFavZip}) {
+function FavoriteZipItem({zipData, allZipCodes, removeFavZip}) {
 
     // zipData is the favorite zip code in question 
     // looks like this:
@@ -20,8 +20,7 @@ function FavoriteZipItem({zipData, removeFavZip}) {
         removeFavZip(zipData.id)
     } 
   
-    // const willTheRealZipCodePleaseStandUp = allZipCodes.filter(zipCode => zipCode.id === zipData.zip_code_id)[0] 
-    const willTheRealZipCodePleaseStandUp = zipData       
+    const willTheRealZipCodePleaseStandUp = allZipCodes.filter(zipCode => zipCode.id === zipData.zip_code_id)[0]        
 
     return(
         <div>
