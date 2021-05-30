@@ -7,6 +7,7 @@ import UserShow from './UserShow';
 import ZipCodeShow from './ZipCodeShow';
 import JobSearchList from './JobSearchList';
 import NavBar from './NavBar';
+import LineChart from './LineChart';
 
 function App() {
   
@@ -40,6 +41,9 @@ function App() {
         </Route>
         <Route exact path="/job_searches">
           <JobSearchList />
+        </Route>
+        <Route exact path="/linechart">
+          <LineChart />
         </Route>
 
 

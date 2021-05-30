@@ -12,7 +12,6 @@ function ZipCodeShow() {
     let {id} = useParams()
 
     useEffect(() => {
-
         fetch(`http://localhost:3000/zip_codes/${id}`)
             .then(res => res.json())
             .then(data => {
@@ -25,7 +24,7 @@ function ZipCodeShow() {
             <JobSearchTableRow {...jobSearchInstance} key = {jobSearchInstance.id}/>
         )
     })
-    
+
     return(
         <div id='zip-code-show-container'>
             <h1> {zipData.zip}</h1>
