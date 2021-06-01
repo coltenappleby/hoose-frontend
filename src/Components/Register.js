@@ -1,10 +1,13 @@
 import React, { useState } from "react"
+import { useHistory } from "react-router-dom";
 
 function Register() {
 
+    
     const [username, setUsername] = useState("")
     const [errors, setErrors] = useState([])
-
+    let history = useHistory()
+    
     function handleSubmit(e) {
         e.preventDefault()
 
@@ -20,7 +23,7 @@ function Register() {
             .then((data) => {
                 if(data.id) {
                     window.sessionStorage.setItem("currentUserId", `${data.id}`)
-                    // history.pushState("/")
+                    history.push(`/users/${data.id}`)
                 } else {
                     setErrors(data)
                 }

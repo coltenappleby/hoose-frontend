@@ -1,14 +1,14 @@
 import React, {useState} from "react"
-// import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 import Register from "./Register"
 
 function Login({isLoggedIn, setIsLoggedIn}) {
 
+    let history = useHistory()
+
     const [username, setUserName] = useState([])
     const [errors, setErrors] = useState([])
     const [loginOrRegister, setLoginOrRegister] = useState("login")
-
-    // let history = useHistory()
 
     function handleChange(e) {
         setUserName(e.target.value)
@@ -30,7 +30,7 @@ function Login({isLoggedIn, setIsLoggedIn}) {
                 if(data.id) {
                     window.sessionStorage.setItem("currentUserId", `${data.id}`)
                     setIsLoggedIn(true)
-                    // history.pushState("/")
+                    history.push(`/users/${data.id}`)
                 } else {
                     setErrors(data)
                 }
