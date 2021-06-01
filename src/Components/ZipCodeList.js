@@ -22,8 +22,6 @@ function ZipCodeList({zipCodes, setZipCodes}) {
         )
     })
 
-    // "/zipcodes/:id"
-
     return (
         <div id="zip-code-list-container">
             <h1>ZipCode List</h1>

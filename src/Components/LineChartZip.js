@@ -1,32 +1,16 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import {useEffect, useState} from "react";
 
 
-function LineChart() {
+function LineChartZip({zipData}) {
     
-    const [zipData, setZipData] = useState({job_searches: [], housing_data: []})
+    let sum = 0
+    for(let i = 0; i < zipData.housing_data.length; i++){sum+=zipData.housing_data[i].sales_count}
+    sum = sum/zipData.housing_data.length
     
-    useEffect(() => {
-        fetch(`http://localhost:3000/zip_codes/${110}`)
-        .then(res => res.json())
-        .then(data => {
-            setZipData(data)
-            console.log(data)
-        })
-    }, [])
+    let avg_sales_price = [];
+    for(var i=0; i<(zipData.housing_data.length); i++){ avg_sales_price.push(sum)}
     
-    let national_average_value = 540000
-    let national_average_value_list = [];
-    for(var i=0; i<(zipData.housing_data.length); i++){ national_average_value_list.push(national_average_value)}
-    
-    // let zip_average_value = [];
-    // let prices = zipData.housing_data.map((instance) => instance.sales_count);
-
-    // for(var i=0; i<(zipData.housing_data.length); i++){ zip_average_value.push(national_average_value)}
-    // get the average and create another line
-   
-
     const data = {
         labels: zipData.housing_data.map((instance) => instance.month+instance.year).reverse(),
         datasets: [
@@ -39,8 +23,8 @@ function LineChart() {
             yAxisID: 'prices',
           },
           {
-            label: 'National_Average',
-            data: national_average_value_list,
+            label: 'Average Sales Price',
+            data: avg_sales_price,
             fill: false,
             backgroundColor: "red",
             borderColor: 'red',
@@ -54,13 +38,6 @@ function LineChart() {
             borderColor: 'green',
             yAxisID: 'sales_count',
           }
-        //   {
-        //     label: 'Zip_Code_Average',
-        //     data: average_list,
-        //     fill: false,
-        //     backgroundColor: "red",
-        //     borderColor: 'rgba(255, 99, 132, 0.2)',
-        //   }
         ],
     };
     const options = {
@@ -97,4 +74,4 @@ function LineChart() {
     );
 };
 
-export default LineChart;
+export default LineChartZip;

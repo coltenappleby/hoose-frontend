@@ -22,6 +22,9 @@ function NavBar() {
       <NavLink to="/job_searches" exact >
         Job Search Index
       </NavLink>
+      <NavLink  to="/linechart" exact>
+          LineChart
+        </NavLink>
     </div>
   )
 }

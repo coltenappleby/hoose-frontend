@@ -99,7 +99,7 @@ function UserShow({allZipCodes}) {
                     <FavoriteZipAdd allZipCodes= {allZipCodes} addFavZip = {addFavZip}/>
                     <ul> {favoriteZipItems} </ul>
                 </div>
-                <div class="job-search-container">
+                <div className="job-search-container">
                     <table >
                         <tr>
                             <th>Zip Code</th>
@@ -116,7 +116,7 @@ function UserShow({allZipCodes}) {
                     </table>
                 </div>
             </div>
-        : <h1> Invalid address </h1>} </>
+        : <div> <h1> Invalid address </h1> </div>} </>
     )
 }
 

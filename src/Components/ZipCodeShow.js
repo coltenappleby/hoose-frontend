@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react"
 import { useParams } from 'react-router-dom'
 import HousingDataTable from "./HousingDataTable.js";
 import JobSearchTableRow from "./JobSearchTableRow.js";
+import LineChartZip from "./LineChartZip.js";
 
 
 
 function ZipCodeShow() {
 
     const [zipData, setZipData] = useState({job_searches: [], housing_data: []})
+    const [showChart, setShowChart] = useState(false)
 
     let {id} = useParams()
 
@@ -24,6 +26,10 @@ function ZipCodeShow() {
             <JobSearchTableRow {...jobSearchInstance} key = {jobSearchInstance.id}/>
         )
     })
+
+    function handleShowChartClick(){
+        setShowChart(!showChart)
+    }
 
     return(
         <div id='zip-code-show-container'>
@@ -59,6 +65,13 @@ function ZipCodeShow() {
                     {jobSearchTableRows}
                 </tbody>
             </table>
+            <div id="housing-value-chart-container">
+                <button onClick={handleShowChartClick}> {!showChart ? "Show Chart" : "Hide Chart"} </button>
+                {showChart && 
+                    <LineChartZip zipData = {zipData} />
+                }
+
+            </div>
 
 
         </div>
