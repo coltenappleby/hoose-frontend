@@ -1,7 +1,7 @@
 import React from 'react';
 import { Scatter } from 'react-chartjs-2';
 
-const rand = () => Math.round(Math.random() * 20 - 10);
+// const rand = () => Math.round(Math.random() * 20 - 10);
 
 
 
@@ -43,7 +43,7 @@ function  ScatterChart({allZipCodes}) {
 
     for(let i = 0; i < housing_delta.length; i++){
         if(housing_delta[i] !== 0 && job_search_listing_counts[i] !== null){
-            cleanData.push([housing_delta[i], job_search_listing_counts[i]])
+            cleanData.push({x: housing_delta[i], y: job_search_listing_counts[i]})
         }
     }
 
@@ -54,7 +54,7 @@ function  ScatterChart({allZipCodes}) {
           {
             label: 'A dataset',
             data: [
-              { x: cleanData[0], y: cleanData[1] },
+              cleanData,
               
             ],
             backgroundColor: 'rgba(255, 99, 132, 1)',
