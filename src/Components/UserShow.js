@@ -45,7 +45,6 @@ function UserShow({allZipCodes}) {
     function handleButtonClick(e) {
         setRenderChangeUsername(!renderChangeUsername)
     }
-
     function removeFavZip(id){
         const filteredFavZips = userData.favorited_zips.filter((zip) => zip.id !== id)
         setUserData({...userData, favorited_zips: filteredFavZips})
@@ -92,14 +91,14 @@ function UserShow({allZipCodes}) {
                             </form>
                         </div>}
                 </div>
-                <div id="job_searches-container">
-                    {/* < JobSearchList /> */}
-                </div>
+
                 <div id="favorite-zip-container">
+                <h3> Saved Zip Codes </h3>
                     <FavoriteZipAdd allZipCodes= {allZipCodes} addFavZip = {addFavZip}/>
                     <ul> {favoriteZipItems} </ul>
                 </div>
                 <div className="job-search-container">
+                    <h3>Zip Code Searches </h3>
                     <table >
                         <tr>
                             <th>Zip Code</th>

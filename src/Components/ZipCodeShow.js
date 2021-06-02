@@ -20,7 +20,7 @@ function ZipCodeShow() {
                 setZipData(data)
             })
     }, [])
-
+    
     const jobSearchTableRows = zipData.job_searches.map((jobSearchInstance) => { 
         return(
             <JobSearchTableRow {...jobSearchInstance} key = {jobSearchInstance.id}/>

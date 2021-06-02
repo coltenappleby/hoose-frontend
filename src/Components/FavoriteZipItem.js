@@ -20,7 +20,8 @@ function FavoriteZipItem({zipData, allZipCodes, removeFavZip}) {
         removeFavZip(zipData.id)
     } 
   
-    const willTheRealZipCodePleaseStandUp = allZipCodes.filter(zipCode => zipCode.id === zipData.zip_code_id)[0]        
+    // const willTheRealZipCodePleaseStandUp = allZipCodes.filter(zipCode => zipCode.id === zipData.zip_code_id)[0]
+    const willTheRealZipCodePleaseStandUp = zipData
 
     return(
         <div>
