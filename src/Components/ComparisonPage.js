@@ -1,51 +1,95 @@
 import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Scatter } from 'react-chartjs-2';
 
 const rand = () => Math.round(Math.random() * 20 - 10);
 
-const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      type: 'line',
-      label: 'Dataset 1',
-      borderColor: 'rgb(54, 162, 235)',
-      borderWidth: 2,
-      fill: false,
-      data: [rand(), rand(), rand(), rand(), rand(), rand()],
-    },
-    {
-      type: 'bar',
-      label: 'Dataset 2',
-      backgroundColor: 'rgb(255, 99, 132)',
-      data: [rand(), rand(), rand(), rand(), rand(), rand(), rand()],
-      borderColor: 'white',
-      borderWidth: 2,
-    },
-    {
-      type: 'bar',
-      label: 'Dataset 3',
-      backgroundColor: 'rgb(75, 192, 192)',
-      data: [rand(), rand(), rand(), rand(), rand(), rand(), rand()],
-    },
-  ],
-};
 
-const MultiType = () => (
-  <>
-    <div className='header'>
-      <h1 className='title'>MultiType Chart</h1>
-      <div className='links'>
-        <a
-          className='btn btn-gh'
-          href='https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/MultiType.js'
-        >
-          Github Source
-        </a>
-      </div>
-    </div>
-    <Bar data={data} />
-  </>
-);
 
-export default MultiType;
+
+
+function  ScatterChart({allZipCodes}) { 
+
+
+    const housing_delta = allZipCodes.map((zipCode) => {
+        let bothAprils
+        if (zipCode["housing_data"]) {
+            bothAprils = zipCode["housing_data"].filter((monthInstance) => monthInstance.month === "04")
+        } else {
+            bothAprils = 0
+        }
+        let delta
+        if(bothAprils.length === 2) { // 
+            delta = bothAprils[0]["sales_count"] - bothAprils[1]["sales_count"]
+        } else {
+            delta = 0 
+        }
+        return(
+            delta
+        )
+    })
+    const job_search_listing_counts = allZipCodes.map((zipCode) => {
+        let mostRecent
+        if(zipCode["job_searches"].length !== 0){
+            mostRecent = zipCode["job_searches"][zipCode["job_searches"].length-1]["number_of_posts"]
+        }
+        if (mostRecent === undefined){
+            mostRecent = null
+        }
+        return(
+            mostRecent
+        )
+    })
+    let cleanData = []
+
+    for(let i = 0; i < housing_delta.length; i++){
+        if(housing_delta[i] !== 0 && job_search_listing_counts[i] !== null){
+            cleanData.push([housing_delta[i], job_search_listing_counts[i]])
+        }
+    }
+
+    console.log(cleanData)
+
+    const data = {
+        datasets: [
+          {
+            label: 'A dataset',
+            data: [
+              { x: cleanData[0], y: cleanData[1] },
+              
+            ],
+            backgroundColor: 'rgba(255, 99, 132, 1)',
+          },
+        ],
+      };
+
+    const options = {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      };
+
+    return(
+        <div id = "comp-chart-container">
+            <div className='header'>
+            <h1 className='title'>Scatter Chart</h1>
+            <div className='links'>
+                <a
+                className='btn btn-gh'
+                href='https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/Scatter.js'
+                >
+                Github Source
+                </a>
+            </div>
+            </div>
+            <Scatter data={data} options={options} />
+        </div>
+    )
+}
+
+export default ScatterChart;

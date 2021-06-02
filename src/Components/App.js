@@ -8,6 +8,7 @@ import ZipCodeShow from './ZipCodeShow';
 import JobSearchList from './JobSearchList';
 import NavBar from './NavBar';
 import LineChart from './LineChart';
+import ScatterChart from "./ComparisonPage";
 
 function App() {
   
@@ -45,6 +46,10 @@ function App() {
         <Route exact path="/linechart">
           <LineChart />
         </Route>
+        <Route exact path="/comp">
+          <ScatterChart allZipCodes = {zipCodes}/>
+        </Route>
+
 
 
 
