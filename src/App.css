@@ -39,6 +39,31 @@
 
 table, th, td {
   border: 1px solid black;
+  border-collapse: collapse;
+  width: 75%;
+  padding: 8px;
+}
+
+tr:nth-child(even){
+  background-color: #DCDCDC;
+}
+tr:hover {
+  background-color: #808080;
+}
+.job-search-container {
+  padding: 10px;
+}
+#housing-data-table-container {
+  padding: 10px;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: black;
+  color: white;
+  border: white;
 }
 
 /* Add a black background color to the top navigation */
@@ -60,9 +85,9 @@ table, th, td {
 }
 
 .nav-bar a:hover {
-  border-bottom: 3px solid red;
+  border-bottom: 3px solid tomato;
 }
 
 .nav-bar a.active {
-  border-bottom: 3px solid blue;
+  border-bottom: 3px solid #1E90FF;
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 function NavBar() {
+
+  // console.log(window.sessionStorage.getItem("currentUserId"))
   return (
     <div className="nav-bar">
       <NavLink

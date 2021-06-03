@@ -42,35 +42,32 @@ function ZipCodeShow() {
                     <li> Number of Job Searches: {zipData.job_searches.length} searches </li>
                 </ul>
             </div>
-            <div id='housing-data-results-list'>
+            <div id='housing-data-table-container'>
                 <h3> House Listings</h3>
                 <HousingDataTable housingData = {zipData.housing_data} />
             </div>
-
-            {/* <div id='job-search-results-list'>
-                <h3> Job Search Listings </h3>
-                {jobSearchItems}
-            </div> */}
-            <table className="job-search-table">
-                <tr>
-                    <th>Zip Code</th>
-                    <th>search_date</th>
-                    <th>number_of_posts</th>
-                    <th>remote</th>
-                    <th>radius</th>
-                    <th>job_type</th>
-                    <th>date_posted</th>
-                </tr>
-                <tbody>
-                    {jobSearchTableRows}
-                </tbody>
-            </table>
-            <div id="housing-value-chart-container">
+            <div className='job-search-container'>
+            <h3> Job Searches </h3>
+                <table className="job-search-table">
+                    <tr>
+                        <th>Zip Code</th>
+                        <th>search_date</th>
+                        <th>number_of_posts</th>
+                        <th>remote</th>
+                        <th>radius</th>
+                        <th>job_type</th>
+                        <th>date_posted</th>
+                    </tr>
+                    <tbody>
+                        {jobSearchTableRows}
+                    </tbody>
+                </table>
+            </div>
+            <div id="housing-data-chart-container">
                 <button onClick={handleShowChartClick}> {!showChart ? "Show Chart" : "Hide Chart"} </button>
                 {showChart && 
                     <LineChartZip zipData = {zipData} />
                 }
-
             </div>
 
 

@@ -93,12 +93,12 @@ function UserShow({allZipCodes}) {
                 </div>
 
                 <div id="favorite-zip-container">
-                <h3> Saved Zip Codes </h3>
+                <h3> {username}'s Saved Zip Codes </h3>
                     <FavoriteZipAdd allZipCodes= {allZipCodes} addFavZip = {addFavZip}/>
                     <ul> {favoriteZipItems} </ul>
                 </div>
                 <div className="job-search-container">
-                    <h3>Zip Code Searches </h3>
+                    <h3>Job Searches </h3>
                     <table >
                         <tr>
                             <th>Zip Code</th>

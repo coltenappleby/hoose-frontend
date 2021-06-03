@@ -12,10 +12,10 @@ function JobSearchFilter({searchTerm, setSearchTerm}) {
 
 
     return(
-        <div className="filter-container">
+        <>
             <label>Search Zip Codes</label>
             <input type="text" value={searchTerm} onChange={handleChange} placeholder={filterPlaceholder} />
-        </div>
+        </>
     )
 }
 
