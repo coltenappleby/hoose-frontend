@@ -28,6 +28,7 @@ function JobSearchList() {
 
     return(
         <div className="job-search-container">
+            <h1> All Job Searches </h1>
             <div className="job-search-list-filter-container">
                 <br/>
                 <JobSearchFilter searchTerm= {searchTerm} setSearchTerm ={setSearchTerm} />
@@ -36,12 +37,13 @@ function JobSearchList() {
             <table className="job-search-table">
                 <tr>
                     <th>Zip Code</th>
-                    <th>search_date</th>
-                    <th>number_of_posts</th>
-                    <th>remote</th>
-                    <th>radius</th>
-                    <th>job_type</th>
-                    <th>date_posted</th>
+                    <th>Search Date</th>
+                    <th>Number of Postings</th>
+                    <th>Remote</th>
+                    <th>Radius</th>
+                    <th>Job Type</th>
+                    <th>Date Posted</th>
+                    <th>Search Term</th>
                 </tr>
                 <tbody>
                     {jobSearchTableRows}

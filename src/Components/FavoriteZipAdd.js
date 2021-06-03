@@ -13,10 +13,8 @@ function FavoriteZipAdd({allZipCodes, addFavZip}) {
     
     function handleSubmit(e){
         e.preventDefault()
-        // console.log(allZipCodes)
-        // console.log(zipcode)
+        
         const zip_code_id =  allZipCodes.filter((zipcodeInstance) => zipcodeInstance.zip === zipcode)[0].id
-        // console.log(zip_code_id)
 
         fetch(`http://localhost:3000/favorited_zips`, {
             method: 'POST',
@@ -43,12 +41,12 @@ function FavoriteZipAdd({allZipCodes, addFavZip}) {
     }
 
     return(
-        <div>
+        <div id="favorite-zip-form-container">
             {errors.length > 0 && <div> {displayErrors} </div>}
             <form onSubmit = {handleSubmit} >
-            <label> Add a new favorite Zip code: </label> <br/>
-            <input type = "number" name = "zipcode" value = {zipcode} onChange={handleChange}/>
-            <input className="login" type="submit" />
+                <label> Add a new favorite Zip code: </label> <br/>
+                    <input type = "number" name = "zipcode" value = {zipcode} onChange={handleChange}/>
+                <input className="login" type="submit"/>
             </form>
         </div>
     )

@@ -20,6 +20,8 @@ function ZipCodeShow() {
                 setZipData(data)
             })
     }, [])
+
+    console.log(zipData.job_searches)
     
     const jobSearchTableRows = zipData.job_searches.map((jobSearchInstance) => { 
         return(
@@ -33,11 +35,11 @@ function ZipCodeShow() {
 
     return(
         <div id='zip-code-show-container'>
-            <h1> {zipData.zip}</h1>
+            <h1> {zipData.zip}'s Information Page</h1>
             <div id='zip-code-information'>
                 <ul>
                     <li> City Name: {zipData.name} </li>
-                    <li> Population (if available): {zipData.population ? zipData.population : "NA"} </li>
+                    <li> Population: {zipData.population ? zipData.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : "NA"} </li>
                     <li> County: {zipData.county} </li>
                     <li> Number of Job Searches: {zipData.job_searches.length} searches </li>
                 </ul>
@@ -46,29 +48,31 @@ function ZipCodeShow() {
                 <h3> House Listings</h3>
                 <HousingDataTable housingData = {zipData.housing_data} />
             </div>
-            <div className='job-search-container'>
-            <h3> Job Searches </h3>
-                <table className="job-search-table">
-                    <tr>
-                        <th>Zip Code</th>
-                        <th>search_date</th>
-                        <th>number_of_posts</th>
-                        <th>remote</th>
-                        <th>radius</th>
-                        <th>job_type</th>
-                        <th>date_posted</th>
-                    </tr>
-                    <tbody>
-                        {jobSearchTableRows}
-                    </tbody>
-                </table>
-            </div>
             <div id="housing-data-chart-container">
                 <button onClick={handleShowChartClick}> {!showChart ? "Show Chart" : "Hide Chart"} </button>
                 {showChart && 
                     <LineChartZip zipData = {zipData} />
                 }
             </div>
+            <div className='job-search-container'>
+                <h3> Job Searches </h3>
+                <table className="job-search-table">
+                    <tr>
+                        <th>Zip Code</th>
+                        <th>Search Date</th>
+                        <th>Number of Postings</th>
+                        <th>Remote</th>
+                        <th>Radius</th>
+                        <th>Job Type</th>
+                        <th>Date Posted</th>
+                        <th>Search Term</th>
+                    </tr>
+                    <tbody>
+                        {jobSearchTableRows}
+                    </tbody>
+                </table>
+            </div>
+            
 
 
         </div>

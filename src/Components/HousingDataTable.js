@@ -9,7 +9,7 @@ function HousingDataTable({housingData}){
             <tr key = {instance.year+instance.month}>
                 <td>{instance.year}</td>
                 <td>{instance.month}</td>
-                <td>{instance.sales_count}</td> 
+                <td>{instance.sales_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td> 
                 <td>{instance.avg_price}</td>
                 {/* {sales_count and avg_price were seeded incorrectly} */}
             </tr>

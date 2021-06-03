@@ -64,6 +64,7 @@ function UserShow({allZipCodes}) {
         )
     })
 
+
     const jobSearchTableRows = userData.job_searches.map((jobSearchInstance) => { 
         return(
             <JobSearchTableRow {...jobSearchInstance} key = {jobSearchInstance.id}/>
@@ -76,7 +77,7 @@ function UserShow({allZipCodes}) {
         {window.sessionStorage.getItem("currentUserId") === id ?
             <div id="profile-page">
                 <div> 
-                    <h1> {userData.username}'s Profile</h1>
+                    <h1> {userData.username}'s Profile Page</h1>
                 </div>
 
                 <div> 
@@ -93,7 +94,7 @@ function UserShow({allZipCodes}) {
                 </div>
 
                 <div id="favorite-zip-container">
-                <h3> {username}'s Saved Zip Codes </h3>
+                <h3> {userData.username}'s Saved Zip Codes </h3>
                     <FavoriteZipAdd allZipCodes= {allZipCodes} addFavZip = {addFavZip}/>
                     <ul> {favoriteZipItems} </ul>
                 </div>
@@ -108,6 +109,7 @@ function UserShow({allZipCodes}) {
                             <th>radius</th>
                             <th>job_type</th>
                             <th>date_posted</th>
+                            <th>Search Term</th>
                         </tr>
                         <tbody>
                             {jobSearchTableRows}

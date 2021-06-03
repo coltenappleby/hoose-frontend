@@ -26,8 +26,8 @@ function LineChartZip({zipData}) {
             label: 'Average Sales Price',
             data: avg_sales_price,
             fill: false,
-            backgroundColor: "red",
-            borderColor: 'red',
+            backgroundColor: 'tomato',
+            borderColor: 'tomato',
             yAxisID: 'prices',
           },
           {

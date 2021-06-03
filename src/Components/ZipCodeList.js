@@ -12,26 +12,34 @@ function ZipCodeList({zipCodes, setZipCodes}) {
 
     const zipCodeCards = filteredZipCodes.map((zipcodeInstance) => {
         return(
-                <li key = {zipcodeInstance.id}> 
-                    <Link to={`/zipcodes/${zipcodeInstance.id}`}> Zip Code = {zipcodeInstance.zip} </Link>
-                    -- Name = {zipcodeInstance.name}
-                    Population = {zipcodeInstance.population}
-                    {/* State = {state ? state : "not available"} */}
-                    County = {zipcodeInstance.county ? zipcodeInstance.county : "not available"}
-                </li>
+            <tr>
+                <td><Link to={`/zipcodes/${zipcodeInstance.id}`}>{zipcodeInstance.zip} </Link></td>
+                <td>{zipcodeInstance.name}</td>
+                <td>{zipcodeInstance.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                <td>{zipcodeInstance.county ? zipcodeInstance.county : "NA"}</td>
+            </tr>
         )
     })
 
     return (
         <div id="zip-code-list-container">
-            <h1>ZipCode List</h1>
+            <h1>All Zip Codes</h1>
             <div id="zip-code-filter-container">
                <ZipCodeFilter searchTerm = {searchTerm} setSearchTerm = {setSearchTerm} />
             </div>
-            <div id="zip-code-list">
-                <ul>
-                    {zipCodeCards}
-                </ul>
+            <div>
+                <table>
+                    <tr>
+                        <th>Zip Code</th>
+                        <th>City Name</th>
+                        <th>Population</th>
+                        <th>County</th>
+                    </tr>
+                    <tbody>
+                        {zipCodeCards}
+                    </tbody>
+                </table>
+
             </div>
         </div>
     )
